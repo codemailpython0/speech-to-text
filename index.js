@@ -7,8 +7,10 @@ dotenv.config();
 
 const app = express();
 
+// ✅ Allow both local and Netlify frontend origins
 app.use(cors({
-  origin: 'http://localhost:5173'  // your React dev server
+  origin: ['http://localhost:5173', 'https://guileless-meringue-438d3e.netlify.app'],
+  credentials: true,
 }));
 
 app.use(express.json());
@@ -18,5 +20,4 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  
 });
